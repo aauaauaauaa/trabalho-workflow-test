@@ -1,0 +1,21 @@
+name: Create Release Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP package
+        run: |
+          zip -r release-package.zip .
+
+      - name: Upload ZIP as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-package
+          path: release-package.zip
