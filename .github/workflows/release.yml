@@ -3,6 +3,10 @@ name: Create Release Package
 on:
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  pages: write
+
 jobs:
   build-zip:
     runs-on: ubuntu-latest
