@@ -1,4 +1,4 @@
-name: Create Release Package
+name: Criar pacote e publicar Release
 
 on:
   workflow_dispatch:
@@ -26,21 +26,15 @@ jobs:
         run: |
           zip -r release-package.zip .
 
-      - name: Create GitHub Release
-        id: create_release
+      - name: Create GitHub Release and Upload ZIP
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.inputs.tag_name }}
           name: ${{ github.event.inputs.release_name || github.event.inputs.tag_name }}
           body: |
-            📦 Release gerada automaticamente pelo GitHub Actions
-            - Inclui o código-fonte completo em formato .zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload ZIP to Release
-        uses: softprops/action-gh-release@v2
-        with:
+            🚀 Versão automatizada do projeto Trabalho Workflow Test
+            - Código-fonte completo
+            - Gerado via GitHub Actions
           files: release-package.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
